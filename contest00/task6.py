@@ -1,16 +1,20 @@
-n, m = [int(i) for i in input().split(" ")]
+n, m = map(int, input().split())
 windowCount = int(input())
 
-wall = [[False for i in (m - 1)] for j in (n - 1)]
+wall = [[False for i in range(m)] for j in range(n)]
 wall_is_good = True
 
 for i in range(windowCount):
-    minX, maxX, minY, maxY = [int(i) for i in input().split(" ")]
+    minX, maxX, minY, maxY = map(int, input().split())
     for x in range(minX, maxX):
         for y in range(minY, maxY):
-            if wall[x][y] == True:
+            if x >= 0 and y >= 0 and x < n and y < m:
+                if wall[x][y] == True:
+                    wall_is_good = False
+                    break
+                wall[x][y] = True
+            else:
                 wall_is_good = False
-            wall[x][y] = True
 
 if wall_is_good:
     print("correct")
