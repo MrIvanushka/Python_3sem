@@ -1,0 +1,1 @@
+print(sorted([i for i in open(input()).read().split()], reverse = True)[0])
